@@ -1,0 +1,59 @@
+---
+title: Validate an API response
+description: Use Postman tests to verify the HTTP status code and fields returned by JSONPlaceholder.
+---
+
+After making your first request, add automated checks to verify that the API returns the expected status code and data.
+
+This guide uses `GET https://jsonplaceholder.typicode.com/posts/1` from the [quickstart](/quickstart).
+
+## Before you begin
+
+- Complete the [quickstart](/quickstart).
+- Open the request in Postman.
+
+## Add response checks
+
+1. Open the request in Postman.
+2. Select the **Scripts** tab and open **Post-response**.
+3. Add the following JavaScript:
+
+```javascript
+pm.test("Status code is 200", function () {
+  pm.response.to.have.status(200);
+});
+
+pm.test("Response contains the expected post", function () {
+  const response = pm.response.json();
+
+  pm.expect(response).to.have.property("userId");
+  pm.expect(response).to.have.property("id", 1);
+  pm.expect(response.title).to.be.a("string").and.not.empty;
+  pm.expect(response.body).to.be.a("string").and.not.empty;
+});
+```
+
+4. Select **Send** to run the request and its tests.
+5. Open the **Test Results** section to review the results.
+
+## Understand the checks
+
+| Check | What it verifies |
+| --- | --- |
+| Status code | The server returns HTTP `200 OK`. |
+| Required fields | The response includes `userId` and `id`. |
+| Post ID | The returned post has an `id` of `1`. |
+| Text fields | The `title` and `body` values are non-empty strings. |
+
+## Troubleshoot failed tests
+
+| Symptom | What to check |
+| --- | --- |
+| Status test fails | Inspect the actual HTTP status and response body. |
+| JSON parsing fails | Check whether the response contains valid JSON; an error response may have a different format. |
+| A field check fails | Inspect the response and confirm that the request targets `/posts/1`. |
+| Request cannot connect | Check network access, proxy settings, and the request URL. |
+
+## Next steps
+
+Try requests to other JSONPlaceholder resources, such as `/posts` or `/users/1`. Update your tests to match the response structure and behavior you expect.

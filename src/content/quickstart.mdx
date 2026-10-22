@@ -1,47 +1,63 @@
 ---
 title: Quickstart
-description: Guide a new reader through one useful workflow and show them how to verify it.
+description: Send your first GET request to JSONPlaceholder and verify the JSON response.
 ---
 
-A strong quickstart produces one meaningful result. Replace the placeholders
-below with the shortest supported path for your product.
+This quickstart shows how to retrieve a sample post using Postman or `curl`. No account or API key is required.
 
 ## Before you begin
 
-List only the requirements needed for this workflow:
+- Install [Postman](https://www.postman.com/downloads/) if you want to follow the Postman steps.
+- Alternatively, use a terminal with `curl` installed.
+- Make sure the environment can access `jsonplaceholder.typicode.com`.
 
-- An account or credential, when required
-- A supported runtime, device, browser, or operating system
-- Permission to create or change the resource used in the example
+## Make your first request
 
 <Steps>
-  <Step title="Install the required tool">
-    Give readers one recommended installation command.
+  <Step title="Create a GET request">
+    Open Postman, create an HTTP request, select **GET**, and enter this URL:
 
-    ```bash
-    npm install your-package
+    ```http
+    https://jsonplaceholder.typicode.com/posts/1
     ```
   </Step>
-  <Step title="Add the minimum configuration">
-    Include only the values needed for the first successful run.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Send the request">
+    Select **Send**. The API should return a successful response containing a sample post.
   </Step>
-  <Step title="Complete the first task">
-    Use a realistic example that produces an observable result.
+  <Step title="Inspect the response">
+    Verify that the HTTP status is `200 OK` and that the JSON response includes these fields:
 
-    ```bash
-    your-cli start
+    ```json
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "body": "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam"
+    }
     ```
-  </Step>
-  <Step title="Verify the result">
-    State exactly what the reader should see and how to recover when it does not appear.
+
+    The `title` and `body` values are sample data. Compare the actual response with the response displayed by the API.
   </Step>
 </Steps>
 
-## Choose the next task
+## Try the request with curl
 
-Link to the guide that naturally follows this result. Avoid ending the reader’s
-journey with a generic list of every feature.
+Run this command in a terminal:
+
+```bash
+curl -i https://jsonplaceholder.typicode.com/posts/1
+```
+
+The `-i` option includes the HTTP response headers so you can inspect the status code as well as the response body.
+
+## Troubleshooting
+
+| Symptom | What to check |
+| --- | --- |
+| No response | Check network connectivity and whether the API host is reachable. |
+| A connection or DNS error | Check the URL, network settings, proxy, and DNS configuration. |
+| Unexpected response | Confirm the request URL is `/posts/1` and the method is `GET`. |
+
+## Next step
+
+Continue to [Validate an API response](/guides/validate-response) to add automated checks in Postman.

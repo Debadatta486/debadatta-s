@@ -1,11 +1,12 @@
 openapi: 3.1.0
+
 info:
-  title: Sample Posts API
+  title: JSONPlaceholder Posts API
   version: 1.0.0
   description: >-
-    A working sample backed by the public JSONPlaceholder service, so every
-    request in this reference returns a live response you can inspect. Replace
-    this file with the OpenAPI specification for the API your readers use.
+    Explore the JSONPlaceholder REST API through example requests for posts
+    and users. Use the interactive API reference to inspect request parameters,
+    send test requests, and review sample responses. No API key is required.
 servers:
   - url: https://jsonplaceholder.typicode.com
     description: Live demo server

@@ -39,11 +39,12 @@
       "tab": "Guides",
       "groups": [
         {
-          "group": "Work with Thally",
+          "group": "Guides and tutorials",
           "pages": [
             "guides/create-a-site",
             "guides/work-with-the-cli",
-            "guides/connect-ai-tools"
+            "guides/connect-ai-tools",
+            "guides/validate-response"
           ]
         }
       ]
